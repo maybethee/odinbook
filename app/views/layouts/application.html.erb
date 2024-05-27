@@ -13,6 +13,27 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+
+    <div>
+      <div>
+      <%= link_to 'Home', root_path %>
+      </div>
+      <div>
+      <% if user_signed_in? %>
+      <div>
+        <%= link_to "Profile", user_path(current_user.id) %>
+        <%= button_to "Log out", destroy_user_session_path, method: :delete %>
+      </div>
+      <% else %>
+        <div>
+        <%= link_to "Login", new_user_session_path %> 
+        <%= link_to "Sign Up", new_user_registration_path %> 
+        </div>
+      <% end %>
+      </div>
+    </div>
+
+
     <%= yield %>
   </body>
 </html>

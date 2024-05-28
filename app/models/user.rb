@@ -5,6 +5,7 @@ class User < ApplicationRecord
   :recoverable, :rememberable, :validatable
   
   validates :username, presence: true, uniqueness: { case_sensitive: false }
+  has_many :posts
 
   attr_writer :login
 

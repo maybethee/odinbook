@@ -48,6 +48,7 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
   gem "factory_bot_rails"
+  gem 'guard-rspec'
 end
 
 group :development do
@@ -61,7 +62,6 @@ group :development do
   # gem "spring"
 
   gem "guard"
-  gem 'guard-rspec', require: false
 end
 
 group :test do
@@ -69,6 +69,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "rspec-rails"
+  gem 'database_cleaner-active_record'
 end
 
 gem "devise", "~> 4.9"

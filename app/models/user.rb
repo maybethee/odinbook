@@ -7,6 +7,16 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   validates :email, presence: true, uniqueness: { case_sensitive: false }
 
+
+
+  has_many :followers, foreign_key: :follower_id, class_name: 'Relationship', dependent: :destroy
+
+  has_many :followed, through: :followers, dependent: :destroy
+
+  has_many :followed, foreign_key: :followed_id, class_name: 'Relationship', dependent: :destroy
+
+  has_many :followers, through: :followed, dependent: :destroy
+
   has_many :posts
 
   attr_writer :login

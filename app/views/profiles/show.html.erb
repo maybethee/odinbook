@@ -1,12 +1,10 @@
-<%# add link to edit profile information, if current_user (edit path?) %>
-<% if @current_user %>
-  <%= link_to "Edit Profile", edit_profile_path %>
+<% if @user.id == current_user.id %>
+  <%= link_to "Edit Profile", edit_user_profile_path(current_user) %>
 <% end %>
 
-<h2><%= @current_user.profile.name %></h2>
-<p>@<%= @current_user.username %></p>
-<p><%= @current_user.profile.bio %></p><br>
+<h2><%= @profile.name %></h2>
+<p>@<%= @user.username %></p>
+<p><%= @profile.bio %></p><br>
 
-<p>Age: <%= @current_user.profile.age %></p>
-<p>Location: <%= @current_user.profile.location %></p>
-
+<p>Age: <%= @profile.age %></p>
+<p>Location: <%= @profile.location %></p>

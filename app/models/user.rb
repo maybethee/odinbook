@@ -4,20 +4,19 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable
   
+  
+  
+  has_many :followers, foreign_key: :follower_id, class_name: 'Relationship', dependent: :destroy
+  has_many :followed, through: :followers, dependent: :destroy
+  has_many :followed, foreign_key: :followed_id, class_name: 'Relationship', dependent: :destroy
+  has_many :followers, through: :followed, dependent: :destroy
+  has_many :posts
+  has_one :profile, dependent: :destroy
+
+  before_create :create_profile
+
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   validates :email, presence: true, uniqueness: { case_sensitive: false }
-
-
-
-  has_many :followers, foreign_key: :follower_id, class_name: 'Relationship', dependent: :destroy
-
-  has_many :followed, through: :followers, dependent: :destroy
-
-  has_many :followed, foreign_key: :followed_id, class_name: 'Relationship', dependent: :destroy
-
-  has_many :followers, through: :followed, dependent: :destroy
-
-  has_many :posts
 
   attr_writer :login
 
@@ -32,5 +31,9 @@ class User < ApplicationRecord
     elsif conditions.has_key?(:username) || conditions.has_key?(:email)
       where(conditions.to_h).first
     end
+  end
+
+  def create_profile
+    build_profile()
   end
 end

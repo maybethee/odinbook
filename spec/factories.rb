@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :profile do
+    
+  end
+
   factory :relationship do
     follower_id { 1 }
     followed_id { 1 }

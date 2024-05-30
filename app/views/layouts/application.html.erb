@@ -21,7 +21,7 @@
       <div>
       <% if user_signed_in? %>
       <div>
-        <%= link_to "Profile", user_path(current_user.id) %>
+        <%= link_to "Profile", profile_path %>
         <%= button_to "Log out", destroy_user_session_path, method: :delete %>
       </div>
       <% else %>

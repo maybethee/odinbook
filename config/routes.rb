@@ -2,6 +2,11 @@ Rails.application.routes.draw do
   get 'posts/index'
   devise_for :users
   resources :users, only: [:show]
+  # think i need profile to be a nested route under users, so the url for a user's profile would be users/:id/profile
+  resource :profile, only: [:show, :edit, :update]
+  resolve('Profile') { [:profile] }
+
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

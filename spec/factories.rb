@@ -10,8 +10,8 @@ FactoryBot.define do
 
 
   factory :user do
-    username { "Joe" }
-    email { "joe@gmail.com" }
-    password { "blahblah123" }
+    sequence(:username) { |n| "Joe+#{n}" }
+    sequence(:email) { |n| "joe+#{n}@gmail.com" }
+    sequence(:password) { |n| "blahblah123+#{n}" }
   end
 end

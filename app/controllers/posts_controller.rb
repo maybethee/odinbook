@@ -30,7 +30,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
 
-    if @post.update(profile_params)
+    if @post.update(post_params)
       redirect_to post_path, notice: 'Post successfully updated.'
     else
       render 'edit', status: :unprocessable_entity

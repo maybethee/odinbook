@@ -1,3 +1,5 @@
 <%# Posts should always display the post content, author, comments, and likes. %>
-<div><%= @post.user.username %>says:</div>
-<div><%= @post.content %></div>
+<div><%= link_to "edit post", edit_post_path %></div><br>
+<h4><%= link_to "@#{@post.user.username}", user_profile_path(@post.user)  %></h4>
+<div><%= @post.content %></div> <br>
+<div><%= @post.updated_at.strftime("%m/%d/%Y %I:%M%p")%></div>

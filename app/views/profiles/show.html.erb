@@ -17,4 +17,15 @@
 <p><%= @profile.bio %></p><br>
 
 <p>Age: <%= @profile.age %></p>
-<p>Location: <%= @profile.location %></p>
+<p>Location: <%= @profile.location %></p> <br>
+<br>
+
+<h3>posts:</h3>
+<% @user.posts.all.each do |post| %>
+<div>
+  <%= link_to post.updated_at.strftime("%m/%d/%Y %I:%M%p"), post_path(post) %>
+</div> <br>
+<div>
+  <%= post.content %>
+</div><br><br>
+<% end %>

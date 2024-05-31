@@ -2,12 +2,14 @@ Rails.application.routes.draw do
   get 'posts/index'
   devise_for :users
   resources :users, only: [:show] do
-    resource :profile, only: [:show, :edit, :update]
-    # resolve('Profile') { [:profile] }
+    #add follow/unfollow for profile
+    resource :profile, only: [:show, :edit, :update] do
+      member do
+        post 'follow'
+        delete 'unfollow'
+      end
+    end
   end
-  # think i need profile to be a nested route under users, so the url for a user's profile would be users/:id/profile
-
-
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

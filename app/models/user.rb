@@ -3,13 +3,15 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable
-  
-  
-  
-  has_many :followers, foreign_key: :follower_id, class_name: 'Relationship', dependent: :destroy
-  has_many :followed, through: :followers, dependent: :destroy
-  has_many :followed, foreign_key: :followed_id, class_name: 'Relationship', dependent: :destroy
-  has_many :followers, through: :followed, dependent: :destroy
+
+  # followeds are the users that user is following.
+  has_many :active_relationships, foreign_key: :follower_id, class_name: 'Relationship', dependent: :destroy
+  has_many :followeds, through: :active_relationships, source: :followed
+
+  # followers are the users following the user.
+  has_many :passive_relationships, foreign_key: :followed_id, class_name: 'Relationship', dependent: :destroy
+  has_many :followers, through: :passive_relationships, source: :follower
+
   has_many :posts
   has_one :profile, dependent: :destroy
 

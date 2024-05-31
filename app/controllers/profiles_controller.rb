@@ -1,15 +1,12 @@
 class ProfilesController < ApplicationController
+  before_action :set_user
 
-  # consider, if route is users/:id/profile, @profile, should be @profile = User.find(params[:id]), right? and then adjust profile views to dynamically show certain things when profile belongs to current_user
   def show
-    @user = User.find(params[:user_id])
     @profile = User.find(params[:user_id]).profile
   end
 
   def edit
-    # @current_user = current_user
     @profile = User.find(params[:user_id]).profile
-    # @profile = current_user.profile
   end
 
   def update
@@ -21,7 +18,19 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def follow
+    Relationship.create_or_find_by(follower_id: current_user.id, followed_id: @user.id)
+  end
+
+  def unfollow
+    current_user.active_relationships.where(followed_id: @user.id).destroy_all
+  end
+
   private
+
+  def set_user
+    @user = User.find(params[:user_id])
+  end
 
   def profile_params
     params.require(:profile).permit(:name, :bio, :age, :location)

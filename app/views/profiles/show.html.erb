@@ -1,6 +1,16 @@
-<% if @user.id == current_user.id %>
+<% if @user == current_user %>
   <%= link_to "Edit Profile", edit_user_profile_path(current_user) %>
+<% elsif current_user %>
+  <% if following?(@user) %>
+    <%= button_to 'Unfollow', unfollow_user_profile_path(user_id: @user.id), method: :delete %>
+  <% else %>
+    <%= button_to 'Follow', follow_user_profile_path(user_id: @user.id), method: :post %>
+  <% end %>
 <% end %>
+
+<br>
+<div>Followers: <%= @user.passive_relationships.count %></div>
+<div>Following: <%= @user.active_relationships.count %></div>
 
 <h2><%= @profile.name %></h2>
 <p>@<%= @user.username %></p>

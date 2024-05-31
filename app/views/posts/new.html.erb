@@ -1,0 +1,11 @@
+<%= form_with(model: @post) do |form| %>
+  <div>
+    <%= form.label :content %>
+    <%= form.text_area :content %>
+    <br>max: 240 characters
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

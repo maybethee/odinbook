@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :post do
+    user { nil }
+  end
+
   factory :profile do
     
   end

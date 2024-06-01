@@ -1,5 +1,8 @@
 <% if @user == current_user %>
   <%= link_to "Edit Profile", edit_user_profile_path(current_user) %>
+  <div>
+  <%= link_to "new post", new_post_path %> 
+</div>
 <% elsif current_user %>
   <% if following?(@user) %>
     <%= button_to 'Unfollow', unfollow_user_profile_path(user_id: @user.id), method: :delete %>

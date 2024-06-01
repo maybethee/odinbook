@@ -2,14 +2,23 @@
 <p>Find me in app/views/posts/index.html.erb</p>
 
 <div>
-  <%= link_to "new post", new_post_path, data: { turbolinks: false } %> 
+  <%= link_to "new post", new_post_path %> 
 </div>
 <br>
 
-<% @posts.each do |post| %>
+<% @posts.reverse_order.each do |post| %>
   <div>
     <%= link_to "@#{post.user.username}", user_profile_path(post.user)%><br>
     <%= post.content %><br>
+    <%= pluralize(post.likes.count, 'Like') %><br>
+
+    <% already_liked = post.likes.find { |like| like.user_id == current_user.id} %>
+    <% if already_liked %>
+      <%= button_to 'Unlike', post_like_path(post, already_liked, source_view: 'index'), method: :delete %>
+    <% else %>
+      <%= button_to 'Like', post_likes_path(post, source_view: 'index'), method: :post %>
+    <% end %>
+    
     <%= link_to post.updated_at.strftime("%m/%d/%Y %I:%M%p"), post_path(post) %>
   </div><br>
 <% end %>

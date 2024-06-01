@@ -2,4 +2,14 @@
 <div><%= link_to "edit post", edit_post_path %></div><br>
 <h4><%= link_to "@#{@post.user.username}", user_profile_path(@post.user)  %></h4>
 <div><%= @post.content %></div> <br>
+<div><%= link_to "#{pluralize(@post.likes.count, 'Like')}", post_likes_path(@post) %> </div>
+
+<% already_liked = @post.likes.find { |like| like.user_id == current_user.id} %>
+  <% if already_liked %>
+<div>
+    <%= button_to 'Unlike', post_like_path(@post, already_liked), method: :delete %>
+  <% else %>
+    <%= button_to 'Like', post_likes_path(@post), method: :post %>
+  <% end %>
+</div>
 <div><%= @post.updated_at.strftime("%m/%d/%Y %I:%M%p")%></div>

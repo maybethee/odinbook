@@ -29,3 +29,14 @@
 </div>
 
 <div><%= @post.updated_at.strftime("%m/%d/%Y %I:%M%p")%></div>
+
+<h4>Comments:</h4>
+
+<div>
+  <% @comments.each do |comment| %>
+    @<%= comment.user.username %>:
+    <%= comment.content %><br>
+    <%= time_ago_in_words(comment.created_at) %> ago<br><br>
+  <% end %>
+</div>
+

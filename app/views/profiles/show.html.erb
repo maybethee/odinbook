@@ -25,10 +25,32 @@
 
 <h3>posts:</h3>
 <% @user.posts.all.each do |post| %>
-<div>
-  <%= link_to post.updated_at.strftime("%m/%d/%Y %I:%M%p"), post_path(post) %>
-</div> <br>
-<div>
-  <%= post.content %>
-</div><br><br>
+
+  <div>
+    <%= post.content %><br>
+    <%= link_to post.updated_at.strftime("%m/%d/%Y %I:%M%p"), post_path(post) %>
+  </div><br><br>
+
+  <div>
+    <%= pluralize(post.likes.count, 'Like') %>
+    <% already_liked = post.likes.find { |like| like.user_id == current_user.id} %>
+    <% if already_liked %>
+      <%= button_to 'Unlike', post_like_path(post, already_liked, source_view: 'index'), method: :delete %>
+    <% else %>
+      <%= button_to 'Like', post_likes_path(post, source_view: 'index'), method: :post %>
+    <% end %>
+  </div>
+
+  <div>
+    <h4>Comments:</h4>
+
+    <div>
+      <% post.comments.each do |comment| %>
+        @<%= comment.user.username %>:
+        <%= comment.content %><br>
+        <%= time_ago_in_words(comment.created_at) %> ago<br><br>
+      <% end %>
+    </div>
+  </div>
+  -----------------------------------------------------------------------------------<br>
 <% end %>

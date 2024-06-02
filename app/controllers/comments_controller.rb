@@ -1,6 +1,10 @@
 class CommentsController < ApplicationController
   before_action :find_post
 
+  # def index
+  #   @comments = Comment.where(post_id: @post.id)
+  # end
+
   def new
     @comment = @post.comments.new
   end

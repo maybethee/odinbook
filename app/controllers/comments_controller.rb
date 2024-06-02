@@ -1,10 +1,6 @@
 class CommentsController < ApplicationController
   before_action :find_post
 
-  # def index
-  #   @comments = Comment.where(post_id: @post.id)
-  # end
-
   def new
     @comment = @post.comments.new
   end
@@ -23,10 +19,10 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-
-    @comment.destroy
-
-    redirect_to post_path, status: :see_other
+    if @comment.user_id == current_user.id
+      @comment.destroy
+    end
+    redirect_to post_path(@post)
   end
 
   private

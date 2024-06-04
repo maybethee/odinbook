@@ -24,7 +24,7 @@
 <br>
 
 <h3>posts:</h3>
-<% @user.posts.all.each do |post| %>
+<% @user.posts.all.reverse_order.each do |post| %>
 
   <div>
     <%= post.content %><br>
@@ -32,7 +32,7 @@
     <% if post.user_id == current_user.id %>
       <%= button_to 'Delete Post', post_path(post), method: :delete %>
     <% end %>
-  </div><br><br>
+  </div><br>
 
   <div>
     <%= pluralize(post.likes.count, 'Like') %>
@@ -45,8 +45,7 @@
   </div>
 
   <div>
-    <h4>Comments:</h4>
-
+    <h5>Comments:</h5>
     <div>
       <% post.comments.each do |comment| %>
         <br><%= link_to "@#{comment.user.username}", user_profile_path(comment.user) %>:
@@ -58,5 +57,5 @@
       <% end %>
     </div>
   </div>
-  -----------------------------------------------------------------------------------<br>
+  -----------------------------------------------------------------------------------
 <% end %>

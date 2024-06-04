@@ -1,0 +1,27 @@
+<h2>All Users</h2>
+
+<div>
+  <% @users.each do |user| %>
+    <%# include photo here later %>
+    <div>
+      <p><%= link_to "@#{user.username}", user_profile_path(user) %></p>
+      <p><%= user.profile.bio %></p>
+    </div><br>
+
+    <div>
+      <% unless user == current_user %>
+        <% if following?(user) %>
+          <%= button_to 'Unfollow', unfollow_user_profile_path(user_id: user.id), method: :delete %>
+        <% else %>
+          <%= button_to 'Follow', follow_user_profile_path(user_id: user.id), method: :post %>
+        <% end %>
+      <% end %>
+    </div>
+
+
+
+    <div>Followers: <%= user.passive_relationships.count %></div>
+    <div>Following: <%= user.active_relationships.count %></div><br>
+    --------------------------------------------------
+  <% end %>
+</div>

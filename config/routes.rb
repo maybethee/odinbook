@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   get 'posts/index'
   devise_for :users
-  resources :users, only: [:show] do
-    #add follow/unfollow for profile
+  resources :users, only: [:index, :show] do
     resource :profile, only: [:show, :edit, :update] do
       member do
         post 'follow'

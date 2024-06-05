@@ -1,10 +1,17 @@
 <h2>All Users</h2>
 
+
+
 <div>
   <% @users.each do |user| %>
-    <%# include photo here later %>
+
+
+
     <div>
-      <p><%= link_to "@#{user.username}", user_profile_path(user) %></p>
+      <%= profile_gravatar user %>
+      <%= link_to "@#{user.username}", user_profile_path(user) %>
+    </div>
+    <div>
       <p><%= user.profile.bio %></p>
     </div><br>
 

@@ -2,16 +2,18 @@
 <p></p>
 
 <div>
-  <%= link_to "new post", new_post_path %> 
+  <%= button_to "New Post", new_post_path, method: :get %> 
 </div>
 <br>
 
 <% @posts = Post.from_users_followed_by(current_user) %>
 <% @posts.reverse_order.each do |post| %>
   <div>
+    
     <div>
-      <%= link_to "@#{post.user.username}", user_profile_path(post.user)%><br>
-      <%= post.content %><br>
+      <%= profile_gravatar post.user %>
+      <%= link_to "@#{post.user.username}", user_profile_path(post.user)%><br><br>
+      <%= post.content %><br><br>
       <%= link_to post.updated_at.strftime("%m/%d/%Y %I:%M%p"), post_path(post) %><br>
       <% if post.user_id == current_user.id %>
         <%= button_to 'Delete Post', post_path(post), method: :delete %>
@@ -32,8 +34,9 @@
       <h4>Comments:</h4>
 
       <div>
-        <% post.comments.each do |comment| %>        
-          <br><%= link_to "@#{comment.user.username}", user_profile_path(comment.user) %>:
+        <% post.comments.each do |comment| %>  
+          <%= profile_gravatar comment.user %>      
+          <%= link_to "@#{comment.user.username}", user_profile_path(comment.user) %>:
           <%= comment.content %><br>
           <%= time_ago_in_words(comment.created_at) %> ago<br>
           <% if comment.user_id == current_user.id %>

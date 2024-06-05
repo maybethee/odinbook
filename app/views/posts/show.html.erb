@@ -1,6 +1,13 @@
 <%# Posts should always display the post content, author, comments, and likes. %>
-<div><%= link_to "edit post", edit_post_path %></div><br>
-<h4><%= link_to "@#{@post.user.username}", user_profile_path(@post.user)  %></h4>
+<div>
+  <%= button_to "Edit Post", edit_post_path, method: :get %> 
+</div><br>
+
+<h4>
+  <%= profile_gravatar @post.user %>
+  <%= link_to "@#{@post.user.username}", user_profile_path(@post.user)  %>
+</h4>
+
 <div><%= @post.content %></div> <br>
 <div><%= @post.updated_at.strftime("%m/%d/%Y %I:%M%p")%></div>
 
@@ -40,7 +47,8 @@
 
 <div>
   <% @comments.each do |comment| %>
-    <br><%= link_to "@#{comment.user.username}", user_profile_path(comment.user) %>:
+    <%= profile_gravatar comment.user %>
+    <%= link_to "@#{comment.user.username}", user_profile_path(comment.user) %>:
     <%= comment.content %><br>
     <%= time_ago_in_words(comment.created_at) %> ago<br>
     <% if comment.user_id == current_user.id %>

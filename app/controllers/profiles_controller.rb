@@ -2,11 +2,11 @@ class ProfilesController < ApplicationController
   before_action :set_user
 
   def show
-    @profile = User.find(params[:user_id]).profile
+    @profile = @user.profile
   end
 
   def edit
-    @profile = User.find(params[:user_id]).profile
+    @profile = @user.profile
   end
 
   def update

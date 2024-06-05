@@ -1,4 +1,7 @@
-<h1>edit <%= current_user.username %>'s profile</h1>
+<h1>
+  <%= profile_gravatar @user %><br>
+  edit @<%= current_user.username %>'s profile
+</h1>
 
 <%= form_with(model: @profile, url: user_profile_path(current_user)) do |form| %>
   <div>

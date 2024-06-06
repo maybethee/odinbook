@@ -1,8 +1,4 @@
 <%# Posts should always display the post content, author, comments, and likes. %>
-<div>
-  <%= button_to "Edit Post", edit_post_path, method: :get %> 
-</div><br>
-
 <h4>
   <%= profile_gravatar @post.user %>
   <%= link_to "@#{@post.user.username}", user_profile_path(@post.user)  %>
@@ -13,6 +9,7 @@
 
 <div>
   <% if @post.user_id == current_user.id %>
+    <%= button_to "Edit Post", edit_post_path, method: :get %> 
     <%= button_to 'Delete Post', post_path(@post), method: :delete %>
   <% end %>
 </div>
@@ -28,32 +25,9 @@
   <% end %>
 </div>
 
-<div>
-  <%= form_with model: [@post, @comment] do |form| %>
-  <div>
-    <%= form.label 'comment:' %>
-    <%= form.text_area :content %>
-    <br>
-  </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
-  <% end %>
-
-</div>
+<%= render "comment_form", post: @post, source_view: 'show' %>
 
 <h4>Comments:</h4>
 
-<div>
-  <% @comments.each do |comment| %>
-    <%= profile_gravatar comment.user %>
-    <%= link_to "@#{comment.user.username}", user_profile_path(comment.user) %>:
-    <%= comment.content %><br>
-    <%= time_ago_in_words(comment.created_at) %> ago<br>
-    <% if comment.user_id == current_user.id %>
-      <%= button_to 'Delete', post_comment_path(@post, comment), method: :delete %> 
-    <% end %>
-  <% end %>
-</div>
-
+<%= render "comments", post: @post %>

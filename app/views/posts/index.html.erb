@@ -30,22 +30,11 @@
       <% end %>
     </div>
 
-    <div>
-      <h4>Comments:</h4>
+    <%= render "comment_form", post: post, source_view: 'index' %>
 
-      <div>
-        <% post.comments.each do |comment| %>  
-          <%= profile_gravatar comment.user %>      
-          <%= link_to "@#{comment.user.username}", user_profile_path(comment.user) %>:
-          <%= comment.content %><br>
-          <%= time_ago_in_words(comment.created_at) %> ago<br>
-          <% if comment.user_id == current_user.id %>
-            <%= button_to 'Delete', post_comment_path(post, comment), method: :delete %> 
-          <% end %>
-        <% end %>
-      </div>
+    <h4>Comments:</h4>
 
-    </div>
+    <%= render "comments", post: post %>
     -----------------------------------------------------------------------------------<br>
   </div><br>
 <% end %>

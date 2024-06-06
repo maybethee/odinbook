@@ -62,6 +62,9 @@ group :development do
   # gem "spring"
 
   gem "guard"
+
+  gem "letter_opener"
+  gem "letter_opener_web"
 end
 
 group :test do

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   end
   
   get 'posts/index'
-  devise_for :users
+  devise_for :users, controllers: { registrations: "registrations" }
   resources :users, only: [:index, :show] do
     resource :profile, only: [:show, :edit, :update] do
       member do

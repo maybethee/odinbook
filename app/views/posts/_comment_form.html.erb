@@ -1,15 +1,15 @@
 
-<div>
+
+
+<div class="comment-form">
   <%= form_with model: [post, post.comments.build] do |form| %>
-    <div>
-      <%= form.label 'comment:' %>
-      <%= form.text_area :content %>
-      <br>
+    <div class="form-group">
+      <%= form.label :content, 'Comment:' %>
+      <%= form.text_area :content, class: 'form-control' %>
     </div>
 
-    <div>
-      <%= form.submit %>
+    <div class="form-actions">
+      <%= form.submit 'Post Comment', class: 'btn btn-primary' %>
     </div>
   <% end %>
-
 </div>

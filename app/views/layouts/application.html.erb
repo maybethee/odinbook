@@ -11,31 +11,32 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-    <div>
-      <div>
-      <%= link_to 'Home', root_path %>
-      </div>
-      <div>
-      <% if user_signed_in? %>
-      <div>
-        <%= link_to "Profile", user_profile_path(current_user) %>
-        <%= button_to "Log out", destroy_user_session_path, method: :delete %>
-      </div>
-
-      <div>
-        <%= link_to "Users", users_path %>
-      </div>
-      <% else %>
-        <div>
-        <%= link_to "Login", new_user_session_path %> 
-        <%= link_to "Sign Up", new_user_registration_path %> 
-        </div>
-      <% end %>
-      </div>
+    <div class="flash-messages">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
     </div>
+
+    <header>
+      <div class="nav">
+        <div>
+          <%= link_to 'Home', root_path %>
+
+          <% if user_signed_in? %>
+
+            <%= link_to "Profile", user_profile_path(current_user) %>
+            <%= link_to "Users", users_path %>
+        </div>
+
+        <div>
+            <%= button_to "Log out", destroy_user_session_path, method: :delete %>
+        </div>
+
+        <% else %>
+          <%= link_to "Login", new_user_session_path %> 
+          <%= link_to "Sign Up", new_user_registration_path %> 
+        <% end %>
+      </div>
+    </header>
 
 
     <%= yield %>

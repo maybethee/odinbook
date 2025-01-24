@@ -1,0 +1,111 @@
+h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.new-post-button {
+  margin-bottom: 20px;
+}
+
+.post {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 16px;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+}
+
+.post-header img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+}
+
+.post-header a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.post-header a:hover {
+  text-decoration: underline;
+}
+
+/* Post Content Styles */
+.post-content {
+  margin-top: 16px;
+}
+
+.post-content p {
+  margin-bottom: 8px;
+}
+
+.post-content p:last-of-type {
+  color: #888;
+  font-size: 14px;
+}
+
+.delete-post-btn {
+  margin-top: 10px;
+  background-color: #e74c3c;
+  color: white;
+  border-radius: 4px;
+  padding: 8px 12px;
+}
+
+.delete-post-btn:hover {
+  background-color: #c0392b;
+}
+
+/* Likes Section */
+.post-likes {
+  margin-top: 12px;
+}
+
+.post-likes p {
+  font-weight: bold;
+}
+
+.like-btn {
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin-top: 10px;
+}
+
+.like-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Comments Section */
+.comments-section {
+  margin-top: 20px;
+}
+
+.comments-section h4 {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.comments-section form,
+.comments-section .comments {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+}
+
+/* Divider between posts */
+.post-divider {
+  margin-top: 20px;
+  border: none;
+  border-top: 2px dashed #ccc;
+}

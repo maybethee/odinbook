@@ -1,0 +1,130 @@
+.comments-section {
+  margin-top: 20px;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+/* individual comment */
+.comment {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.comment:last-child {
+  border-bottom: none;
+}
+
+/* comment header */
+.comment-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.comment-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+}
+
+.comment-user {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-username {
+  font-weight: bold;
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.comment-username:hover {
+  text-decoration: underline;
+}
+
+.comment-timestamp {
+  font-size: 12px;
+  color: #888;
+}
+
+/* content */
+.comment-content {
+  font-size: 14px;
+  color: #333;
+  margin-left: 52px;
+}
+
+/* actions */
+.comment-actions {
+  margin-left: 52px;
+}
+
+.comment-delete-btn {
+  font-size: 12px;
+  color: white;
+  background-color: #dc3545;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comment-delete-btn:hover {
+  background-color: #b02a37;
+}
+
+.comment-form {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment-form .form-group {
+  margin-bottom: 1rem;
+}
+
+.comment-form .form-group label {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.comment-form .form-control {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.comment-form .form-control:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+.comment-form .form-actions {
+  text-align: right;
+}
+
+.comment-form .btn-primary {
+  background-color: #3498db;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.comment-form .btn-primary:hover {
+  background-color: #2980b9;
+}

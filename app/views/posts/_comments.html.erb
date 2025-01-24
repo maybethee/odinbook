@@ -1,12 +1,24 @@
-
-      <div>
-        <% post.comments.reject(&:new_record?).each do |comment| %>
-          <%= profile_gravatar comment.user %>
-          <%= link_to "@#{comment.user.username}", user_profile_path(comment.user) %>:
-          <%= comment.content %><br>
-          <%= time_ago_in_words(comment.created_at) %> ago<br>
-          <% if comment.user_id == current_user.id %>
-            <%= button_to 'Delete', post_comment_path(post, comment), method: :delete %> 
-          <% end %>
-        <% end %>
+<div class="comments-section">
+  <% post.comments.reject(&:new_record?).each do |comment| %>
+    <div class="comment">
+      <div class="comment-header">
+        <!-- Assuming profile_gravatar outputs an <img> tag -->
+        <span class="comment-avatar"><%= profile_gravatar comment.user %></span>
+        <span class="comment-author">
+          <%= link_to "@#{comment.user.username}", user_profile_path(comment.user) %>
+        </span>
       </div>
+      
+      <div class="comment-body">
+        <p class="comment-content"><%= comment.content %></p>
+        <p class="comment-timestamp"><%= time_ago_in_words(comment.created_at) %> ago</p>
+      </div>
+      
+      <% if comment.user_id == current_user.id %>
+        <div class="comment-actions">
+          <%= button_to 'Delete', post_comment_path(post, comment), method: :delete, class: 'btn btn-delete' %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

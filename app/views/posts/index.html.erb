@@ -1,40 +1,45 @@
-<h1>Dashboard</h1>
-<p></p>
 
-<div>
+
+
+<h1>Dashboard</h1>
+
+<div class="new-post-button">
   <%= button_to "New Post", new_post_path, method: :get %> 
 </div>
-<br>
 
 <% @posts = Post.from_users_followed_by(current_user) %>
 <% @posts.reverse_order.each do |post| %>
-  <div>
-    
-    <div>
+  <article class="post">
+    <header class="post-header">
       <%= profile_gravatar post.user %>
-      <%= link_to "@#{post.user.username}", user_profile_path(post.user)%><br><br>
-      <%= post.content %><br><br>
-      <%= link_to post.updated_at.strftime("%m/%d/%Y %I:%M%p"), post_path(post) %><br>
-      <% if post.user_id == current_user.id %>
-        <%= button_to 'Delete Post', post_path(post), method: :delete %>
-      <% end %>
-    </div>
+      <%= link_to "@#{post.user.username}", user_profile_path(post.user) %>
+    </header>
 
-    <div>
-      <%= pluralize(post.likes.count, 'Like') %>
+    <section class="post-content">
+      <p><%= post.content %></p>
+      <p><%= link_to post.updated_at.strftime("%m/%d/%Y %I:%M%p"), post_path(post) %></p>
+      <% if post.user_id == current_user.id %>
+        <%= button_to 'Delete Post', post_path(post), method: :delete, class: 'delete-post-btn' %>
+      <% end %>
+    </section>
+
+    <section class="post-likes">
+      <p><%= pluralize(post.likes.count, 'Like') %></p>
       <% already_liked = post.likes.find { |like| like.user_id == current_user.id} %>
       <% if already_liked %>
-        <%= button_to 'Unlike', post_like_path(post, already_liked, source_view: 'index'), method: :delete %>
+        <%= button_to 'Unlike', post_like_path(post, already_liked, source_view: 'index'), method: :delete, class: 'like-btn' %>
       <% else %>
-        <%= button_to 'Like', post_likes_path(post, source_view: 'index'), method: :post %>
+        <%= button_to 'Like', post_likes_path(post, source_view: 'index'), method: :post, class: 'like-btn' %>
       <% end %>
-    </div>
+    </section>
 
-    <%= render "comment_form", post: post, source_view: 'index' %>
+    <section class="comments-section">
+      <%= render "comment_form", post: post, source_view: 'index' %>
+      <h4>Comments:</h4>
+      <%= render "comments", post: post %>
+    </section>
 
-    <h4>Comments:</h4>
-
-    <%= render "comments", post: post %>
-    -----------------------------------------------------------------------------------<br>
-  </div><br>
+    <!-- Divider -->
+    <hr class="post-divider">
+  </article>
 <% end %>

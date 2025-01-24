@@ -1,33 +1,42 @@
+
 <%# Posts should always display the post content, author, comments, and likes. %>
-<h4>
-  <%= profile_gravatar @post.user %>
-  <%= link_to "@#{@post.user.username}", user_profile_path(@post.user)  %>
-</h4>
+<article class="user-post">
+  <header>
+    <h4>
+      <%= profile_gravatar @post.user %>
+      <%= link_to "@#{@post.user.username}", user_profile_path(@post.user) %>
+    </h4>
+  </header>
 
-<div><%= @post.content %></div> <br>
-<div><%= @post.updated_at.strftime("%m/%d/%Y %I:%M%p")%></div>
+  <section>
+    <p><%= @post.content %></p>
+    <p><%= @post.updated_at.strftime("%m/%d/%Y %I:%M%p") %></p>
+  </section>
 
-<div>
-  <% if @post.user_id == current_user.id %>
-    <%= button_to "Edit Post", edit_post_path, method: :get %> 
-    <%= button_to 'Delete Post', post_path(@post), method: :delete %>
-  <% end %>
-</div>
+  <section>
+    <% if @post.user_id == current_user.id %>
+      <div>
+        <%= button_to "Edit Post", edit_post_path, method: :get %>
+        <%= button_to "Delete Post", post_path(@post), method: :delete %>
+      </div>
+    <% end %>
+  </section>
 
-<div><%= link_to "#{pluralize(@post.likes.count, 'Like')}", post_likes_path(@post) %> </div>
+  <section>
+    <p>
+      <%= link_to "#{pluralize(@post.likes.count, 'Like')}", post_likes_path(@post) %>
+    </p>
+    <% already_liked = @post.likes.find { |like| like.user_id == current_user.id } %>
+    <% if already_liked %>
+      <%= button_to "Unlike", post_like_path(@post, already_liked), method: :delete %>
+    <% else %>
+      <%= button_to "Like", post_likes_path(@post), method: :post %>
+    <% end %>
+  </section>
 
-<div>
-  <% already_liked = @post.likes.find { |like| like.user_id == current_user.id} %>
-  <% if already_liked %>
-    <%= button_to 'Unlike', post_like_path(@post, already_liked), method: :delete %>
-  <% else %>
-    <%= button_to 'Like', post_likes_path(@post), method: :post %>
-  <% end %>
-</div>
-
-
-<%= render "comment_form", post: @post, source_view: 'show' %>
-
-<h4>Comments:</h4>
-
-<%= render "comments", post: @post %>
+  <section>
+    <h4>Comments:</h4>
+    <%= render "comment_form", post: @post, source_view: 'show' %>
+    <%= render "comments", post: @post %>
+  </section>
+</article>

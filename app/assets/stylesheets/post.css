@@ -1,0 +1,182 @@
+/* Article Styling */
+article {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 16px;
+}
+
+/* Header Section */
+article header h4 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+}
+
+article header h4 img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+}
+
+article header h4 a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+article header h4 a:hover {
+  text-decoration: underline;
+}
+
+/* content */
+article section {
+  margin-bottom: 16px;
+}
+
+article section p {
+  margin-bottom: 8px;
+}
+
+article section p:last-of-type {
+  color: #888;
+  font-size: 14px;
+}
+
+/* actions */
+article section div {
+  display: flex;
+  gap: 10px;
+}
+
+article section div button {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+article section div button:hover {
+  background-color: #ddd;
+}
+
+/* likes */
+article section p a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+article section p a:hover {
+  text-decoration: underline;
+}
+
+article section button {
+  background-color: #007bff;
+  color: white;
+}
+
+article section button:hover {
+  background-color: #0056b3;
+}
+
+/* comments */
+article section h4 {
+  margin-top: 16px;
+  font-size: 18px;
+}
+
+article section form,
+article section .comments {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.post-form {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.form-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.form-header img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+}
+
+/* form container */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* input field */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.form-input {
+  font-size: 14px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  resize: vertical;
+  min-height: 80px;
+  max-height: 200px;
+}
+
+.form-input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+.form-hint {
+  font-size: 12px;
+  color: #888;
+}
+
+/* submit button */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form-submit {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form-submit:hover {
+  background-color: #0056b3;
+}

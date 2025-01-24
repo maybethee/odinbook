@@ -1,14 +1,23 @@
+<%= turbo_frame_tag @post do %>
+  <article class="post-form">
+    <!-- User Gravatar -->
+    <header class="form-header">
+      <%= profile_gravatar @post.user %>
+    </header>
 
-<%= profile_gravatar @post.user %>
+    <!-- Post Form -->
+    <%= form_with(model: @post, class: 'form-container') do |form| %>
+      <!-- Content Input -->
+      <div class="form-group">
+        <%= form.label :content, "What's on your mind?", class: 'form-label' %>
+        <%= form.text_area :content, class: 'form-input', maxlength: 240, placeholder: 'Write your post here...' %>
+        <p class="form-hint">Max: 240 characters</p>
+      </div>
 
-<%= form_with(model: @post) do |form| %>
-  <div>
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-    <br>max: 240 characters
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+      <!-- Submit Button -->
+      <div class="form-actions">
+        <%= form.submit 'Post', class: 'form-submit' %>
+      </div>
+    <% end %>
+  </article>
 <% end %>

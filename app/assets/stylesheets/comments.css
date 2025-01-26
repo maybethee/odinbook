@@ -4,6 +4,8 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   background-color: #f9f9f9;
+  display: flex;
+  flex-flow: column;
 }
 
 /* individual comment */
@@ -82,7 +84,6 @@
 }
 
 .comment-form {
-  margin-top: 1.5rem;
   padding: 1rem;
   background-color: #f9f9f9;
   border-radius: 8px;

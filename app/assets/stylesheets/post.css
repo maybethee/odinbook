@@ -1,4 +1,3 @@
-/* Article Styling */
 article {
   background: #fff;
   border: 1px solid #ddd;
@@ -8,7 +7,7 @@ article {
   padding: 16px;
 }
 
-/* Header Section */
+/* header section */
 article header h4 {
   display: flex;
   align-items: center;
@@ -179,4 +178,42 @@ article section .comments {
 
 .form-submit:hover {
   background-color: #0056b3;
+}
+
+.page-header {
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.likes-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.likes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.like-item {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  font-size: 18px;
+}
+
+.like-item:last-child {
+  border-bottom: none;
+}
+
+.no-likes-message {
+  text-align: center;
+  font-size: 16px;
+  color: #888;
 }

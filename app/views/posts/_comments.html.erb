@@ -2,7 +2,6 @@
   <% post.comments.reject(&:new_record?).each do |comment| %>
     <div class="comment">
       <div class="comment-header">
-        <!-- Assuming profile_gravatar outputs an <img> tag -->
         <span class="comment-avatar"><%= profile_gravatar comment.user %></span>
         <span class="comment-author">
           <%= link_to "@#{comment.user.username}", user_profile_path(comment.user) %>

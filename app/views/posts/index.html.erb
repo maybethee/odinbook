@@ -4,7 +4,7 @@
 <h1>Dashboard</h1>
 
 <div class="new-post-button">
-  <%= button_to "New Post", new_post_path, method: :get %> 
+  <%= button_to "New Post", new_post_path, method: :get, class: "btn btn-primary" %> 
 </div>
 
 <% @posts = Post.from_users_followed_by(current_user) %>

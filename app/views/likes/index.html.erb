@@ -1,7 +1,15 @@
 <%# turn into a partial/turbo frame for later? %>
 
-<h1>likes on this post</h1>
+<h1 class="page-header">Likes on this Post</h1>
 
-<% @likes.each do |like| %>
-  <%= like.user.username %>
-<% end %>
+<div class="likes-container">
+  <% if @likes.any? %>
+    <ul class="likes-list">
+      <% @likes.each do |like| %>
+        <li class="like-item"><%= like.user.username %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="no-likes-message">No one has liked this post yet.</p>
+  <% end %>
+</div>

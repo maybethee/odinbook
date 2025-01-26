@@ -1,60 +1,54 @@
-<br>----------------------------------------------------------------------------------------------<br>
+
+
 <% if @user == current_user %>
-  <%= link_to "Edit Profile", edit_user_profile_path(current_user) %>
-  <div>
-  <%= button_to "New Post", new_post_path, method: :get %> 
-</div>
+  <div class="profile-actions">
+    <%= link_to "Edit Profile", edit_user_profile_path(current_user), class: "button-link" %>
+    <%= button_to "New Post", new_post_path, method: :get, class: "btn btn-primary" %> 
+  </div>
 <% elsif current_user %>
-    <%= render 'follow_button', user: @user %>
+  <%= render 'follow_button', user: @user %>
 <% end %>
 
-<h1>
+<div class="profile-header">
   <%= profile_gravatar @user %>
-  <%= @profile.name %>
-</h1>
+  <h1><%= @profile.name %></h1>
+  <p>@<%= @user.username %></p>
+  <p><%= @profile.bio %></p>
+</div>
 
-<p>@<%= @user.username %></p>
-<p><%= @profile.bio %></p><br>
+<div class="profile-stats">
+  <%= render 'follower_count', user: @user %>
+  <div><%= @user.active_relationships.count %> Following</div>
+  <p>Age: <%= @profile.age %></p>
+  <p>Location: <%= @profile.location %></p>
+</div>
 
-<br>
+<div class="profile-posts">
+  <h3>Posts:</h3>
+  <% @user.posts.all.reverse_order.each do |post| %>
+    <div class="post">
+      <p><%= post.content %></p>
+      <p><%= link_to post.updated_at.strftime("%m/%d/%Y %I:%M%p"), post_path(post) %></p>
+      <% if post.user_id == current_user.id %>
+        <%= button_to 'Delete Post', post_path(post), method: :delete, class: "delete-post-button" %>
+      <% end %>
 
-<%= render 'follower_count', user: @user %>
-<div><%= @user.active_relationships.count %> Following</div>
+      <div class="post-likes">
+        <%= pluralize(post.likes.count, 'Like') %>
+        <% already_liked = post.likes.find { |like| like.user_id == current_user.id } %>
+        <% if already_liked %>
+          <%= button_to 'Unlike', post_like_path(post, already_liked, source_view: 'index'), method: :delete, class: "like-button" %>
+        <% else %>
+          <%= button_to 'Like', post_likes_path(post, source_view: 'index'), method: :post, class: "like-button" %>
+        <% end %>
+      </div>
 
-
-<p>Age: <%= @profile.age %></p>
-<p>Location: <%= @profile.location %></p> <br>
-<br>
-
-<h3>posts:</h3>
-<% @user.posts.all.reverse_order.each do |post| %>
-
-  <div>
-    <%= post.content %><br>
-    <%= link_to post.updated_at.strftime("%m/%d/%Y %I:%M%p"), post_path(post) %>
-    <% if post.user_id == current_user.id %>
-      <%= button_to 'Delete Post', post_path(post), method: :delete %>
-    <% end %>
-  </div><br>
-
-  <div>
-    <%= pluralize(post.likes.count, 'Like') %>
-    <% already_liked = post.likes.find { |like| like.user_id == current_user.id} %>
-    <% if already_liked %>
-      <%= button_to 'Unlike', post_like_path(post, already_liked, source_view: 'index'), method: :delete %>
-    <% else %>
-      <%= button_to 'Like', post_likes_path(post, source_view: 'index'), method: :post %>
-    <% end %>
-  </div>
-
-  <div>
-
-    <%= render "posts/comment_form", post: post, source_view: 'index' %>
-
-    <h4>Comments:</h4>
-
-    <%= render "posts/comments", post: post %>
-
-  </div>
-  -----------------------------------------------------------------------------------
-<% end %>
+      <div class="post-comments">
+        <%= render "posts/comment_form", post: post, source_view: 'index' %>
+        <h4>Comments:</h4>
+        <%= render "posts/comments", post: post %>
+      </div>
+    </div>
+    <hr>
+  <% end %>
+</div>

@@ -1,30 +1,27 @@
 <h2>All Users</h2>
 
-
-
-<div>
+<div class="users-list">
   <% @users.each do |user| %>
+    <div class="user-card">
+      <div class="user-profile">
+        <%= profile_gravatar user %>
+        <%= link_to "@#{user.username}", user_profile_path(user), class: "user-name" %>
+      </div>
 
+      <div class="user-bio">
+        <p><%= user.profile.bio %></p>
+      </div>
 
+      <div class="user-actions">
+        <% unless user == current_user %>
+          <%= render '/profiles/follow_button', user: user %>
+        <% end %>
+      </div>
 
-    <div>
-      <%= profile_gravatar user %>
-      <%= link_to "@#{user.username}", user_profile_path(user) %>
+      <div class="user-stats">
+        <%= render '/profiles/follower_count', user: user %>
+        <div><%= user.active_relationships.count %> Following</div>
+      </div>
     </div>
-    <div>
-      <p><%= user.profile.bio %></p>
-    </div><br>
-
-    <div>
-      <% unless user == current_user %>
-        <%= render '/profiles/follow_button', user: user %>
-      <% end %>
-    </div>
-
-
-    <%= render '/profiles/follower_count', user: user %>
-    <div><%= user.active_relationships.count %> Following</div>
-
-    --------------------------------------------------
   <% end %>
 </div>

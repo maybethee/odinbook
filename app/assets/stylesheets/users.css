@@ -1,0 +1,76 @@
+.users-list {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(250px, 1fr)
+  ); /* Auto-fill with a min-width of 250px */
+  gap: 20px; /* Space between user cards */
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.user-card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.user-profile img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+}
+
+.user-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #007bff;
+  margin-top: 8px;
+}
+
+.user-name:hover {
+  text-decoration: underline;
+}
+
+.user-bio p {
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.user-actions {
+  margin-top: 15px;
+}
+
+.user-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.user-stats div {
+  margin-top: 5px;
+}
+
+hr {
+  width: 100%;
+  border-top: 1px solid #ddd;
+  margin-top: 20px;
+}

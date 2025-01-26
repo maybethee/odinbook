@@ -16,5 +16,8 @@
  *= require dashboard
  *= require post
  *= require comments
+ *= require devise
+ *= require profile
+ *= require users
  
  */

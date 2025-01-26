@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Odinbook</title>
+    <title>Frendo</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,10 +11,17 @@
   </head>
 
   <body>
-    <div class="flash-messages">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-    </div>
+
+    <% if flash[:notice] || flash[:alert] %>
+      <div class="flash-messages">
+        <% if flash[:notice] %>
+          <p class="notice"><%= flash[:notice] %></p>
+        <% end %>
+        <% if flash[:alert] %>
+          <p class="alert"><%= flash[:alert] %></p>
+        <% end %>
+      </div>
+    <% end %>
 
     <header>
       <div class="nav">
@@ -39,6 +46,9 @@
     </header>
 
 
-    <%= yield %>
+   <main class="main-content">
+      <%= yield %>
+    </main>
+
   </body>
 </html>

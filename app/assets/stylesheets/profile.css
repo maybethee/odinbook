@@ -35,13 +35,26 @@
 .delete-post-button {
   background-color: #dc3545;
   color: white;
+  border-radius: 4px;
+  padding: 8px 12px;
+}
+
+.post-likes button {
+  padding: 4px 7px;
+}
+
+.post-comments-comments button {
+  background-color: #dc3545;
+  color: white;
+  border-radius: 4px;
+  padding: 6px 8px;
 }
 
 .delete-post-button:hover {
   background-color: #c82333;
 }
 
-/* Edit form styling */
+/* edit form styling */
 .profile-form {
   max-width: 600px;
   margin: 0 auto;

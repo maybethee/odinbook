@@ -56,6 +56,16 @@
   margin-top: 15px;
 }
 
+.user-actions button {
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.user-actions button:hover {
+  background-color: #dedede;
+}
+
 .user-stats {
   display: flex;
   flex-direction: column;
